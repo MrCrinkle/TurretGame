@@ -1,0 +1,20 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Turret Game Assets\Scripts\Turrets\MachineGun.cs">
+    <Files>
+      <File FileName="Assets\Turret Game Assets\Scripts\Turrets\Turret.cs" Line="73" Column="1" />
+      <File FileName="Assets\Turret Game Assets\Scripts\Turrets\RocketLauncher.cs" Line="11" Column="41" />
+      <File FileName="Assets\Turret Game Assets\Scripts\Turrets\MachineGun.cs" Line="8" Column="3" />
+      <File FileName="Assets\Turret Game Assets\Scripts\UI\CheatMenuGUI.cs" Line="144" Column="33" />
+      <File FileName="Assets\Turret Game Assets\Scripts\Managers\TurretManager.cs" Line="159" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="F:\Files\Projects\TurretGame\trunk\Assets\Turret Game Assets\Scripts\Turrets\Turret.cs" line="235" />
+      <Breakpoint file="F:\Files\Projects\TurretGame\trunk\Assets\Turret Game Assets\Scripts\Managers\TurretManager.cs" line="152" />
+      <Breakpoint file="F:\Files\Projects\TurretGame\trunk\Assets\Turret Game Assets\Scripts\Managers\TurretManager.cs" line="159" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
