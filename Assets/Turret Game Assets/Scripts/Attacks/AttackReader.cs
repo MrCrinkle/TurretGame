@@ -46,7 +46,10 @@ namespace AssemblyCSharp
 			LoadAttack(attackName, ref attack);
 
 			if (attack != null)
+			{
+				attack.AttackName = attackName;
 				attack.Owner = owner;
+			}
 
 			return attack;
 		}
@@ -77,8 +80,6 @@ namespace AssemblyCSharp
 						attack = new Attack();
 					}
 				}
-
-				attack.AttackName = attackName;
 
 	            if (node.SelectSingleNode("Base") != null)
 	            {
@@ -178,12 +179,16 @@ namespace AssemblyCSharp
 				
 				if (log) Debug.Log(attackName + " changed projectilePrefabName to " + attack.ProjectilePrefabName);
 			}
+
+			attack.ReadCustomXmlProperties(node);
 		}
 
 		protected Attack CreateCustomAttack(string customClassName)
 		{
 			if (customClassName == "MGMultiplyAttack")
 				return new MGMultiplyAttack();
+			else if (customClassName == "RLPrecisionAttack")
+				return new RLPrecisionAttack();
 
 			Debug.Log("Warning: Unrecognized custom attack class name " + customClassName);
 

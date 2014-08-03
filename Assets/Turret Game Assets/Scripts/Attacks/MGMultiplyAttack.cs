@@ -8,8 +8,8 @@ namespace AssemblyCSharp
 	{
 		#region Variables
 		
-		float multiplyModAngle = 8.0f;
-		float multiplyModDamage = 0.5f;
+		float multiplyAngle;
+		float multiplyDamage;
 		
 		#endregion
 		
@@ -37,17 +37,17 @@ namespace AssemblyCSharp
 				
 				projectiles.Add(SpawnProjectile(direction, position));
 
-				float xDist = Mathf.Tan(Mathf.Deg2Rad * multiplyModAngle);
+				float xDist = Mathf.Tan(Mathf.Deg2Rad * multiplyAngle);
 
 				GameObject leftShot = SpawnProjectile(direction, position);
 				leftShot.transform.localScale = new Vector3(1.2f, 1.0f, 1.2f);
 				leftShot.transform.rotation = Quaternion.LookRotation(direction * new Vector3(-xDist, 0.0f, 1.0f));
-				((DamageDealer)leftShot.GetComponent<DamageDealer>()).MultiplyDamage(multiplyModDamage);
+				((DamageDealer)leftShot.GetComponent<DamageDealer>()).MultiplyDamage(multiplyDamage);
 				
 				GameObject rightShot = SpawnProjectile(direction, position);
 				rightShot.transform.localScale = new Vector3(1.2f, 1.0f, 1.2f);
 				rightShot.transform.rotation = Quaternion.LookRotation(direction * new Vector3(xDist, 0.0f, 1.0f));
-				((DamageDealer)rightShot.GetComponent<DamageDealer>()).MultiplyDamage(multiplyModDamage);
+				((DamageDealer)rightShot.GetComponent<DamageDealer>()).MultiplyDamage(multiplyDamage);
 
 				return projectiles;
 			}
@@ -55,29 +55,24 @@ namespace AssemblyCSharp
 			return null;
 		}
 
-		/*
-		public override bool Shoot()
+		public override void ReadCustomXmlProperties(XmlNode node)
 		{
-			bool canShoot = base.Shoot();
+			bool log = false;
 
-			if (canShoot && modifier.SubType == (int)TurretModifierType.Multiply)
+			if (node.SelectSingleNode("MultiplyAngle") != null)
 			{
-				float xDist = Mathf.Tan(Mathf.Deg2Rad * multiplyModAngle);
-
-				GameObject leftShot = SpawnProjectile();
-				leftShot.transform.localScale = new Vector3(1.2f, 1.0f, 1.2f);
-				leftShot.transform.rotation = Quaternion.LookRotation(container.rotation * new Vector3(-xDist, 0.0f, 1.0f));
-				((DamageDealer)leftShot.GetComponent<DamageDealer>()).MultiplyDamage(multiplyModDamage);
-
-				GameObject rightShot = SpawnProjectile();
-				rightShot.transform.localScale = new Vector3(1.2f, 1.0f, 1.2f);
-				rightShot.transform.rotation = Quaternion.LookRotation(container.rotation * new Vector3(xDist, 0.0f, 1.0f));
-				((DamageDealer)rightShot.GetComponent<DamageDealer>()).MultiplyDamage(multiplyModDamage);
+				multiplyAngle = (float)XmlConvert.ToDouble(node.SelectSingleNode("MultiplyAngle").InnerText);
+				
+				if (log) Debug.Log(attackName + " changed multiplyAngle to " + multiplyAngle);
 			}
 
-			return canShoot;
+			if (node.SelectSingleNode("MultiplyDamage") != null)
+			{
+				multiplyDamage = (float)XmlConvert.ToDouble(node.SelectSingleNode("MultiplyDamage").InnerText);
+				
+				if (log) Debug.Log(attackName + " changed multiplyDamage to " + multiplyDamage);
+			}
 		}
-		*/
 
 		#endregion
 		

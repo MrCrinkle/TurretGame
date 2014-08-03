@@ -10,7 +10,7 @@ namespace AssemblyCSharp
 		public Transform target = null;
 		public bool ignoreVertical = false;
 		public bool ignoreHorizontal = false;
-		public float maxTurnSpeed = 200; // in degrees per second
+		public float maxTurnSpeed = 200.0f; // in degrees per second
 		public bool useLocalRotation = false;
 
 		#endregion

@@ -6,10 +6,6 @@ namespace AssemblyCSharp
 {
 	public class RocketLauncher : Turret
 	{
-		Transform rocketTarget = null;
-		
-		float precisionModRocketSpeed = 40.0f;
-
 		public override void Start ()
 		{
 			base.Start();
@@ -30,7 +26,7 @@ namespace AssemblyCSharp
 			base.Update();
 			
 			// implementation of precision modifier for rocket launcher, which targets the enemy you click on
-			if (TurretManager.Instance.CurrentTurret == gameObject && modifier.SubType == (int)TurretModifierType.Precision)
+			if (TurretManager.Instance.CurrentTurret == transform.parent.parent && modifier.SubType == (int)TurretModifierType.Precision)
 			{
 				if (Input.GetButtonDown("Fire2"))
 				{
@@ -102,13 +98,16 @@ namespace AssemblyCSharp
 		
 		public void OnEntityDeath(GameObject obj)
 		{
-			if (rocketTarget == obj.transform)
+			if (currentAttack.Target == obj.transform)
 				setRocketTarget(null);
 		}
 		
 		public void setRocketTarget(Transform target)
 		{
-			Transform originalTarget = rocketTarget;
+			if (modifier.SubType != (int)TurretModifierType.Precision)
+				return;
+
+			Transform originalTarget = currentAttack.Target;
 				
 			DamageTaker damageTaker = null;
 			
@@ -117,17 +116,17 @@ namespace AssemblyCSharp
 			
 			if (target == null || damageTaker == null || (damageTaker != null && damageTaker.IsAlive))
 			{
-				rocketTarget = target;
+				currentAttack.Target = target;
 				
-				if (rocketTarget != null)
-					rocketTarget.localScale = new Vector3(2.0f, 2.0f, 2.0f);
+				if (currentAttack.Target != null)
+					currentAttack.Target.localScale = new Vector3(2.0f, 2.0f, 2.0f);
 			}
 			else if (damageTaker != null && !damageTaker.IsAlive)
 			{
-				rocketTarget = null;
+				currentAttack.Target = null;
 			}
 			
-			if (originalTarget != null && originalTarget != rocketTarget)
+			if (originalTarget != null && originalTarget != currentAttack.Target)
 				originalTarget.localScale = new Vector3(1.0f, 1.0f, 1.0f);
 		}
 		

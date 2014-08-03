@@ -162,7 +162,7 @@ namespace AssemblyCSharp
 			newTurret.transform.localRotation = Quaternion.identity;
 			newTurret.name = "Turret";
 
-			GetTurretComponent(currentTurret).IsSelected = isSelected;
+			newTurret.transform.GetComponent<Turret>().IsSelected = isSelected;
 		}
 		
 		public void ChangeTurretModifier(TurretLocation location, TurretType newModifierType)

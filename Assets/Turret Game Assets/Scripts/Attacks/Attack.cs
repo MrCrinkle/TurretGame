@@ -19,7 +19,7 @@ namespace AssemblyCSharp
 
 		protected string projectilePrefabName = "null";
 
-		protected GameObject target = null;
+		protected Transform target = null;
 		protected Vector3 targetPosition = Vector3.zero;
 		protected string xmlFileName = "";
 		protected Transform owner = null;
@@ -28,7 +28,7 @@ namespace AssemblyCSharp
 		
 		#region Properties
 		
-		public GameObject Target { get { return target; } set { target = value; } }
+		public Transform Target { get { return target; } set { target = value; } }
 		public Transform Owner { get { return owner; } set { owner = value; } }
 		public string AttackName { get { return attackName; } set { attackName = value; } }
 		public Vector2 Damage { get { return damage; } set { damage = value; } }
@@ -64,6 +64,11 @@ namespace AssemblyCSharp
 			}
 
 			return null;
+		}
+
+		public virtual void ReadCustomXmlProperties(XmlNode node)
+		{
+
 		}
 
 		#endregion

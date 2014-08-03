@@ -12,16 +12,13 @@
 		<Accuracy>0.0</Accuracy>
 		<ProjectileSpeedMultiplier>1.0</ProjectileSpeedMultiplier>
 	</Attack>
+	<!--MACHINE GUN-->
 	<Attack>
 		<Name>MGNormal</Name>
 		<Base>BasicAttack</Base>
 		<IsMelee>false</IsMelee>
 		<ProjectilePrefab>Bullet</ProjectilePrefab>
-		<Damage>
-			<Min>14</Min>
-			<Max>18</Max>
-		</Damage>
-		<Delay>0.2</Delay>
+		<Delay>0.15</Delay>
 		<Range>1000</Range>
 		<Accuracy>5.0</Accuracy>
 	</Attack>
@@ -43,5 +40,35 @@
 		<Name>MGMultiply</Name>
 		<Base>MGNormal</Base>
 		<CustomClass>MGMultiplyAttack</CustomClass>
+		<MultiplyAngle>8.0</MultiplyAngle>
+		<MultiplyDamage>0.5</MultiplyDamage>
+	</Attack>
+	<!--ROCKET LAUNCHER-->
+	<Attack>
+		<Name>RLNormal</Name>
+		<Base>BasicAttack</Base>
+		<IsMelee>false</IsMelee>
+		<ProjectilePrefab>Rocket</ProjectilePrefab>
+		<Delay>0.5</Delay>
+		<Range>1000</Range>
+		<Accuracy>0.0</Accuracy>
+	</Attack>
+	<Attack>
+		<Name>RLPrecision</Name>
+		<Base>RLNormal</Base>
+		<CustomClass>RLPrecisionAttack</CustomClass>
+		<PrecisionRocketSpeed>40</PrecisionRocketSpeed>
+	</Attack>
+	<Attack>
+		<Name>RLPiercing</Name>
+		<Base>RLNormal</Base>
+	</Attack>
+	<Attack>
+		<Name>RLElemental</Name>
+		<Base>RLNormal</Base>
+	</Attack>
+	<Attack>
+		<Name>RLMultiply</Name>
+		<Base>RLNormal</Base>
 	</Attack>
 </Attacks>

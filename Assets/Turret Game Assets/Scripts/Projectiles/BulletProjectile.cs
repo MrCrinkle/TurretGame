@@ -56,12 +56,15 @@ namespace AssemblyCSharp
 			}
 			
 			// if the damage is too low with piercing mod, destroy it
-			MachineGun machineGun = source.GetComponent<MachineGun>();
-			
-			if (machineGun == null || machineGun.Modifier.SubType != (int)TurretModifierType.Piercing || damageMultiplier <= 0.0f)
+			if (source != null)
 			{
-				if (otherDamageTaker == null || (otherDamageTaker != null && (otherDamageTaker.IsAlive || otherDamageTaker.solidWhenDead)))
-					OnHitSolidObject(collision, collider, hitObject);
+				MachineGun machineGun = source.GetComponent<MachineGun>();
+				
+				if (machineGun == null || machineGun.Modifier.SubType != (int)TurretModifierType.Piercing || damageMultiplier <= 0.0f)
+				{
+					if (otherDamageTaker == null || (otherDamageTaker != null && (otherDamageTaker.IsAlive || otherDamageTaker.solidWhenDead)))
+						OnHitSolidObject(collision, collider, hitObject);
+				}
 			}
 		}
 

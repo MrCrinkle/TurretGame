@@ -12,7 +12,8 @@ namespace AssemblyCSharp
 		public  int maxPiercingTargets = 3;
 
 		private DamageDealer damageDealer = null;
-		
+		private float startMaxTurnSpeed = 0;
+
 		public override void Start ()
 		{
 			projectileType = ProjectileType.Rocket;
@@ -32,6 +33,33 @@ namespace AssemblyCSharp
 		public override void Update ()
 		{
 			base.Update();
+
+			FollowTarget followTarget = transform.GetComponent<FollowTarget>();
+
+			if (followTarget != null && followTarget.target != null)
+			{
+				float ratio = Math.Min(timeAlive / 3.0f, 1.0f);
+				float turnSpeed = (360.0f - startMaxTurnSpeed) * ratio + startMaxTurnSpeed;
+
+				if (turnSpeed > followTarget.maxTurnSpeed)
+					followTarget.maxTurnSpeed = turnSpeed;
+
+				/*
+				float distToTarget = Vector3.Distance(transform.position, followTarget.target.position);
+
+				if (distToTarget < 15.0f)
+				{
+					if (startMaxTurnSpeed == 0)
+						startMaxTurnSpeed = followTarget.maxTurnSpeed;
+
+					float distRatio = distToTarget / 15.0f;
+					float turnSpeed = (360.0f - startMaxTurnSpeed) * distRatio + startMaxTurnSpeed;
+
+					if (turnSpeed > followTarget.maxTurnSpeed)
+						followTarget.maxTurnSpeed = turnSpeed;
+				}
+				*/
+			}
 		}
 		
 		protected override void OnCollision(Collision collision, Collider other, Transform hitObject)

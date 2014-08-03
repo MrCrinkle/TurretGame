@@ -1,12 +1,8 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Turret Game Assets\Scripts\Attacks\RangedAttack.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Turret Game Assets\Data\Attacks.xml">
     <Files>
-      <File FileName="Assets\Turret Game Assets\Scripts\Turrets\Turret.cs" Line="182" Column="3" />
-      <File FileName="Assets\Turret Game Assets\Scripts\Turrets\MineLauncher.cs" Line="1" Column="1" />
-      <File FileName="Assets\Turret Game Assets\Scripts\Turrets\MachineGun.cs" Line="20" Column="33" />
-      <File FileName="Assets\Turret Game Assets\Scripts\Attacks\Attack.cs" Line="29" Column="25" />
-      <File FileName="Assets\Turret Game Assets\Scripts\Attacks\RangedAttack.cs" Line="74" Column="4" />
+      <File FileName="Assets\Turret Game Assets\Data\Attacks.xml" Line="49" Column="27" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
