@@ -1,0 +1,84 @@
+-debug
+-target:library
+-nowarn:0169
+-out:Temp/Assembly-CSharp.dll
+-r:"C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll"
+-r:Library/ScriptAssemblies/Assembly-CSharp-firstpass.dll
+-r:Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll
+-r:"C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll"
+-define:UNITY_4_5_2
+-define:UNITY_4_5
+-define:UNITY_STANDALONE_WIN
+-define:ENABLE_MICROPHONE
+-define:ENABLE_TEXTUREID_MAP
+-define:ENABLE_UNITYEVENTS
+-define:ENABLE_NEW_HIERARCHY 
+-define:ENABLE_AUDIO_FMOD
+-define:UNITY_STANDALONE
+-define:ENABLE_MONO
+-define:ENABLE_TERRAIN
+-define:ENABLE_SUBSTANCE
+-define:ENABLE_GENERICS
+-define:INCLUDE_WP8SUPPORT
+-define:ENABLE_MOVIES
+-define:ENABLE_WWW
+-define:ENABLE_IMAGEEFFECTS
+-define:ENABLE_WEBCAM
+-define:INCLUDE_METROSUPPORT
+-define:RENDER_SOFTWARE_CURSOR
+-define:ENABLE_NETWORK
+-define:ENABLE_PHYSICS
+-define:ENABLE_CACHING
+-define:ENABLE_CLOTH
+-define:ENABLE_2D_PHYSICS
+-define:ENABLE_SHADOWS
+-define:ENABLE_AUDIO
+-define:ENABLE_NAVMESH_CARVING
+-define:ENABLE_DUCK_TYPING
+-define:ENABLE_SINGLE_INSTANCE_BUILD_SETTING
+-define:ENABLE_PROFILER
+-define:UNITY_EDITOR
+-define:UNITY_EDITOR_WIN
+"Assets/Turret Game Assets/Scripts/AI/FollowTarget.cs"
+"Assets/Turret Game Assets/Scripts/AI/LookAtTarget.cs"
+"Assets/Turret Game Assets/Scripts/AI/MovingObject.cs"
+"Assets/Turret Game Assets/Scripts/Attacks/Attack.cs"
+"Assets/Turret Game Assets/Scripts/Attacks/AttackReader.cs"
+"Assets/Turret Game Assets/Scripts/Attacks/MGMultiplyAttack.cs"
+"Assets/Turret Game Assets/Scripts/Attacks/RLMultiplyAttack.cs"
+"Assets/Turret Game Assets/Scripts/Attacks/RLPrecisionAttack.cs"
+"Assets/Turret Game Assets/Scripts/Effects/Lightning.cs"
+"Assets/Turret Game Assets/Scripts/Enemies/Enemy.cs"
+"Assets/Turret Game Assets/Scripts/Enemies/EnemyController.cs"
+"Assets/Turret Game Assets/Scripts/Entities/Base.cs"
+"Assets/Turret Game Assets/Scripts/Entities/DamageDealer.cs"
+"Assets/Turret Game Assets/Scripts/Entities/DamageTaker.cs"
+"Assets/Turret Game Assets/Scripts/Managers/EnemyManager.cs"
+"Assets/Turret Game Assets/Scripts/Managers/InputManager.cs"
+"Assets/Turret Game Assets/Scripts/Managers/ProjectileManager.cs"
+"Assets/Turret Game Assets/Scripts/Managers/TurretManager.cs"
+"Assets/Turret Game Assets/Scripts/Misc/Upgrade.cs"
+"Assets/Turret Game Assets/Scripts/Misc/World.cs"
+"Assets/Turret Game Assets/Scripts/Projectiles/BulletProjectile.cs"
+"Assets/Turret Game Assets/Scripts/Projectiles/GaussProjectile.cs"
+"Assets/Turret Game Assets/Scripts/Projectiles/LightningCollider.cs"
+"Assets/Turret Game Assets/Scripts/Projectiles/LightningProjectile.cs"
+"Assets/Turret Game Assets/Scripts/Projectiles/MineProjectile.cs"
+"Assets/Turret Game Assets/Scripts/Projectiles/Projectile.cs"
+"Assets/Turret Game Assets/Scripts/Projectiles/RocketProjectile.cs"
+"Assets/Turret Game Assets/Scripts/Turrets/AutoTurret.cs"
+"Assets/Turret Game Assets/Scripts/Turrets/GaussTurret.cs"
+"Assets/Turret Game Assets/Scripts/Turrets/LightningGun.cs"
+"Assets/Turret Game Assets/Scripts/Turrets/MachineGun.cs"
+"Assets/Turret Game Assets/Scripts/Turrets/MineLauncher.cs"
+"Assets/Turret Game Assets/Scripts/Turrets/RocketLauncher.cs"
+"Assets/Turret Game Assets/Scripts/Turrets/Turret.cs"
+"Assets/Turret Game Assets/Scripts/UI/CheatMenuGUI.cs"
+"Assets/Turret Game Assets/Scripts/UI/GUIBar.cs"
+"Assets/Turret Game Assets/Scripts/UI/HealthBar.cs"
+"Assets/Turret Game Assets/Scripts/UI/TopDownAim.cs"
+"Assets/Turret Game Assets/Scripts/UI/TurretRechargeUI.cs"
+"Assets/Turret Game Assets/Scripts/Utils/MessageException.cs"
+"Assets/Turret Game Assets/Scripts/Utils/Utils.cs"
+-r:"C:/Program Files (x86)/Unity/Editor/Data/Mono\lib/mono/unity\System.Runtime.Serialization.dll"
+-r:"C:/Program Files (x86)/Unity/Editor/Data/Mono\lib/mono/unity\System.Xml.Linq.dll"

@@ -20,13 +20,13 @@
 		<ProjectilePrefab>Bullet</ProjectilePrefab>
 		<Delay>0.15</Delay>
 		<Range>1000</Range>
-		<Accuracy>5.0</Accuracy>
+		<Accuracy>7.0</Accuracy>
 	</Attack>
 	<Attack>
 		<Name>MGPrecision</Name>
 		<Base>MGNormal</Base>
 		<Accuracy>0.5</Accuracy>
-		<ProjectileSpeedMultiplier>1.5</ProjectileSpeedMultiplier>
+		<ProjectileSpeedMultiplier>2.0</ProjectileSpeedMultiplier>
 	</Attack>
 	<Attack>
 		<Name>MGPiercing</Name>
@@ -70,5 +70,35 @@
 	<Attack>
 		<Name>RLMultiply</Name>
 		<Base>RLNormal</Base>
+		<CustomClass>RLMultiplyAttack</CustomClass>
+		<RocketSpacing>0.5</RocketSpacing>
+	</Attack>
+	<!--LIGHTNING GUN-->
+	<Attack>
+		<Name>LGNormal</Name>
+		<Base>BasicAttack</Base>
+		<IsMelee>false</IsMelee>
+		<ProjectilePrefab>LightningShot</ProjectilePrefab>
+		<Delay>0.5</Delay>
+		<Range>1000</Range>
+		<Accuracy>0.0</Accuracy>
+	</Attack>
+	<Attack>
+		<Name>LGPrecision</Name>
+		<Base>LGNormal</Base>
+		<CustomClass>RLPrecisionAttack</CustomClass>
+		<PrecisionRocketSpeed>40</PrecisionRocketSpeed>
+	</Attack>
+	<Attack>
+		<Name>LGPiercing</Name>
+		<Base>LGNormal</Base>
+	</Attack>
+	<Attack>
+		<Name>LGElemental</Name>
+		<Base>LGNormal</Base>
+	</Attack>
+	<Attack>
+		<Name>LGMultiply</Name>
+		<Base>LGNormal</Base>
 	</Attack>
 </Attacks>

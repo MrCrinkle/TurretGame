@@ -52,6 +52,7 @@
      <Compile Include="Assets\Turret Game Assets\Scripts\Attacks\Attack.cs" />
      <Compile Include="Assets\Turret Game Assets\Scripts\Attacks\AttackReader.cs" />
      <Compile Include="Assets\Turret Game Assets\Scripts\Attacks\MGMultiplyAttack.cs" />
+     <Compile Include="Assets\Turret Game Assets\Scripts\Attacks\RLMultiplyAttack.cs" />
      <Compile Include="Assets\Turret Game Assets\Scripts\Attacks\RLPrecisionAttack.cs" />
      <Compile Include="Assets\Turret Game Assets\Scripts\Effects\Lightning.cs" />
      <Compile Include="Assets\Turret Game Assets\Scripts\Enemies\Enemy.cs" />

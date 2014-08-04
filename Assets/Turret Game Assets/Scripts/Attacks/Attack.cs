@@ -82,6 +82,7 @@ namespace AssemblyCSharp
 
 			MovingObject movingObject = newProjectile.GetComponent<MovingObject>();
 			movingObject.MoveSpeed = movingObject.MoveSpeed * projectileSpeedMultiplier;
+			movingObject.maxMoveSpeed = movingObject.maxMoveSpeed * projectileSpeedMultiplier;
 
 			newProjectile.transform.position = position;
 			newProjectile.transform.rotation = direction;

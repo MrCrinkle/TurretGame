@@ -189,6 +189,8 @@ namespace AssemblyCSharp
 				return new MGMultiplyAttack();
 			else if (customClassName == "RLPrecisionAttack")
 				return new RLPrecisionAttack();
+			else if (customClassName == "RLMultiplyAttack")
+				return new RLMultiplyAttack();
 
 			Debug.Log("Warning: Unrecognized custom attack class name " + customClassName);
 

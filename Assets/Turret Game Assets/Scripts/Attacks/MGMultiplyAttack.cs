@@ -43,11 +43,13 @@ namespace AssemblyCSharp
 				leftShot.transform.localScale = new Vector3(1.2f, 1.0f, 1.2f);
 				leftShot.transform.rotation = Quaternion.LookRotation(direction * new Vector3(-xDist, 0.0f, 1.0f));
 				((DamageDealer)leftShot.GetComponent<DamageDealer>()).MultiplyDamage(multiplyDamage);
-				
+				projectiles.Add(leftShot);
+
 				GameObject rightShot = SpawnProjectile(direction, position);
 				rightShot.transform.localScale = new Vector3(1.2f, 1.0f, 1.2f);
 				rightShot.transform.rotation = Quaternion.LookRotation(direction * new Vector3(xDist, 0.0f, 1.0f));
 				((DamageDealer)rightShot.GetComponent<DamageDealer>()).MultiplyDamage(multiplyDamage);
+				projectiles.Add(rightShot);
 
 				return projectiles;
 			}

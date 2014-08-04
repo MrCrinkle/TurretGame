@@ -1,8 +1,12 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Turret Game Assets\Data\Attacks.xml">
     <Files>
-      <File FileName="Assets\Turret Game Assets\Data\Attacks.xml" Line="49" Column="27" />
+      <File FileName="Assets\Turret Game Assets\Data\Attacks.xml" Line="93" Column="26" />
+      <File FileName="Assets\Turret Game Assets\Scripts\Attacks\RLMultiplyAttack.cs" Line="46" Column="30" />
+      <File FileName="Assets\Turret Game Assets\Scripts\Attacks\MGMultiplyAttack.cs" Line="52" Column="30" />
+      <File FileName="Assets\Turret Game Assets\Scripts\Attacks\AttackReader.cs" Line="173" Column="1" />
+      <File FileName="Assets\Turret Game Assets\Scripts\Attacks\Attack.cs" Line="77" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
