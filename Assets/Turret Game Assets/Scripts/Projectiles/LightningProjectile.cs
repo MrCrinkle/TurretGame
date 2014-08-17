@@ -14,7 +14,7 @@ namespace AssemblyCSharp
 		private bool calculatingPrecisionTargets = false;
 		private ArrayList precisionModTargets;
 		private GameObject precisionModCollisionObject;	
-		public float precisionModHitDelay = 0.2f;
+		private float precisionModHitDelay = 0.2f;
 		private float precisionModHitTimer = 0.0f;
 		private bool isFirstPrecisionModTarget = true;
 		private int lightningConnectionIndex = 0;
@@ -22,12 +22,16 @@ namespace AssemblyCSharp
 		private ArrayList lightningEffects;
 
 		private bool drawDebugColliders = false;
-		
+
+		public float PrecisionModHitDelay 
+		{ 
+			get { return precisionModHitDelay; } 
+			set { precisionModHitDelay = value; } 
+		}
+
 		public override void Start ()
 		{
 			projectileType = ProjectileType.Lightning;
-
-			lightningGun = source.GetComponent<LightningGun>();
 
 			damageDealer = transform.GetComponent<DamageDealer>();
 			if (damageDealer)
@@ -210,14 +214,14 @@ namespace AssemblyCSharp
 			if (isFirstPrecisionModTarget)
 			{
 				precisionModCollisionObject.transform.position = source.position;
-				precisionModCollisionObject.transform.rotation = source.Find("Turret").transform.rotation;
+				precisionModCollisionObject.transform.rotation = source.transform.rotation;
 				
 				BoxCollider collider = (BoxCollider)precisionModCollisionObject.AddComponent<BoxCollider>();
 				collider.size = new Vector3(4.0f, 0.5f, 40.0f);
 				collider.center = new Vector3(0.0f, 0.0f, 20.0f);
 				collider.isTrigger = true;
 
-				precisionModTargets.Add(source.Find("Turret").Find("FirePoint").transform);
+				precisionModTargets.Add(source.Find("FirePoint").transform);
 				
 				isFirstPrecisionModTarget = false;
 			}
@@ -259,8 +263,6 @@ namespace AssemblyCSharp
 		
 		protected override void OnCollision(Collision collision, Collider other, Transform hitObject)
 		{
-			LightningGun lightningGun = source.GetComponent<LightningGun>();
-
 			float distFromTurret = Vector3.Distance(transform.position, hitObject.position);
 			float lightningLength = ((Transform)lightningEffects[0]).GetComponent<Lightning>().TotalLength;
 

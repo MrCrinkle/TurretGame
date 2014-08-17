@@ -56,18 +56,6 @@ namespace AssemblyCSharp
 		
 		#region Public Methods
 
-		/*
-		protected override GameObject SpawnProjectile()
-		{
-			GameObject newProjectile = base.SpawnProjectile();
-			GaussProjectile gaussProjectile = newProjectile.GetComponent<GaussProjectile>();
-
-			if (gaussProjectile != null)
-				gaussProjectile.Target = currentPrecisionTarget;
-
-			return newProjectile;
-		}
-		*/
 
 		#endregion
 		

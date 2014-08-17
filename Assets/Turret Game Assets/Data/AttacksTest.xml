@@ -20,7 +20,7 @@
     <ProjectilePrefab>Bullet</ProjectilePrefab>
     <Delay>0.15</Delay>
     <MinRange>0</MinRange>
-    <MaxRange>900</MaxRange>
+    <MaxRange>1000</MaxRange>
     <Accuracy>7</Accuracy>
     <MaxDamage>20</MaxDamage>
   </Attack>
@@ -83,13 +83,13 @@
     <Delay>0.5</Delay>
     <MinRange>0</MinRange>
     <MaxRange>1000</MaxRange>
-    <Accuracy>0</Accuracy>
+    <Accuracy>0.0</Accuracy>
   </Attack>
   <Attack>
     <Name>LGPrecision</Name>
     <Base>LGNormal</Base>
-    <CustomClass>LGPrecisionAttack</CustomClass>
-    <HitDelay>0.05</HitDelay>
+    <CustomClass>RLPrecisionAttack</CustomClass>
+    <PrecisionRocketSpeed>40</PrecisionRocketSpeed>
   </Attack>
   <Attack>
     <Name>LGPiercing</Name>
@@ -104,49 +104,7 @@
     <Base>LGNormal</Base>
   </Attack>
   <Attack>
-    <Name>GCNormal</Name>
+    <Name>NewAttack</Name>
     <Base>DefaultAttack</Base>
-    <MinDamage>25</MinDamage>
-    <MaxDamage>25</MaxDamage>
-    <Delay>0.8</Delay>
-    <ProjectilePrefab>GaussShot</ProjectilePrefab>
-  </Attack>
-  <Attack>
-    <Name>GCPrecision</Name>
-    <Base>GCNormal</Base>
-    <CustomClass>GCPrecisionAttack</CustomClass>
-  </Attack>
-  <Attack>
-    <Name>GCPiercing</Name>
-    <Base>GCNormal</Base>
-  </Attack>
-  <Attack>
-    <Name>GCElemental</Name>
-    <Base>GCNormal</Base>
-  </Attack>
-  <Attack>
-    <Name>GCMultiply</Name>
-    <Base>GCNormal</Base>
-  </Attack>
-  <Attack>
-    <Name>MLNormal</Name>
-    <Base>DefaultAttack</Base>
-    <ProjectilePrefab>Mine</ProjectilePrefab>
-  </Attack>
-  <Attack>
-    <Name>MLPrecision</Name>
-    <Base>MLNormal</Base>
-  </Attack>
-  <Attack>
-    <Name>MLPiercing</Name>
-    <Base>MLNormal</Base>
-  </Attack>
-  <Attack>
-    <Name>MLElemental</Name>
-    <Base>MLNormal</Base>
-  </Attack>
-  <Attack>
-    <Name>MLMultiply</Name>
-    <Base>MLNormal</Base>
   </Attack>
 </Attacks>

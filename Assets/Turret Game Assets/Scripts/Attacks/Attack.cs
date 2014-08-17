@@ -86,7 +86,6 @@ namespace AssemblyCSharp
 
 			newProjectile.transform.position = position;
 			newProjectile.transform.rotation = direction;
-			newProjectile.transform.GetComponent<Projectile>().Source = owner;
 			
 			if (accuracy > 0.0f)
 			{
@@ -101,7 +100,7 @@ namespace AssemblyCSharp
 			{
 				newProjectile.transform.rotation = Quaternion.LookRotation(direction * Vector3.forward);
 			}
-			
+
 			return newProjectile;
 		}
 		

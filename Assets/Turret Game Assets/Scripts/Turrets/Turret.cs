@@ -168,7 +168,7 @@ namespace AssemblyCSharp
 			if (readyToShoot && (maxAmmo == 0 || currentAmmo > 0))
 			{
 				ArrayList projectiles = currentAttack.StartAttack(container.rotation, firePoint.position);
-				SetupProjectiles(projectiles);
+				lastProjectileSpawned = (GameObject)projectiles[0];
 
 				readyToShoot = false;
 				shotTimer = 0.0f;
@@ -178,40 +178,6 @@ namespace AssemblyCSharp
 			}
 
 			return false;
-		}
-
-		protected virtual void SetupProjectiles(ArrayList projectiles)
-		{
-			/*
-			GameObject projectile = null;
-
-			for (int i = 0; i < projectiles.Count; i++)
-			{
-				projectile = (GameObject)projectiles[i];
-
-				projectile.transform.position = firePoint.position;
-				projectile.transform.rotation = container.rotation;
-				projectile.transform.GetComponent<Projectile>().Source = transform;
-
-				if (currentAttack.Accuracy > 0.0f)
-				{
-					float angleModifier = Random.Range(0.0f, currentAttack.Accuracy);
-					float newRotation = container.rotation.eulerAngles.y;
-					newRotation = newRotation + angleModifier - (currentAttack.Accuracy * 0.5f);
-					
-					Vector3 newDirection = new Vector3(Mathf.Sin(newRotation * Mathf.Deg2Rad), 0.0f, Mathf.Cos(newRotation * Mathf.Deg2Rad));
-					projectile.transform.rotation = Quaternion.LookRotation(newDirection);
-				}
-				else
-				{
-					projectile.transform.rotation = Quaternion.LookRotation(container.rotation * Vector3.forward);
-				}
-				
-				lastProjectileSpawned = projectile;
-			}
-			*/
-
-			lastProjectileSpawned = (GameObject)projectiles[0];
 		}
 		
 		public virtual void OnSelectTurret()

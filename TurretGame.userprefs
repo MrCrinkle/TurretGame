@@ -1,12 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Turret Game Assets\Data\Attacks.xml">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Turret Game Assets\Scripts\Attacks\GCPrecisionAttack.cs">
     <Files>
-      <File FileName="Assets\Turret Game Assets\Data\Attacks.xml" Line="93" Column="26" />
-      <File FileName="Assets\Turret Game Assets\Scripts\Attacks\RLMultiplyAttack.cs" Line="46" Column="30" />
-      <File FileName="Assets\Turret Game Assets\Scripts\Attacks\MGMultiplyAttack.cs" Line="52" Column="30" />
-      <File FileName="Assets\Turret Game Assets\Scripts\Attacks\AttackReader.cs" Line="173" Column="1" />
-      <File FileName="Assets\Turret Game Assets\Scripts\Attacks\Attack.cs" Line="77" Column="3" />
+      <File FileName="Assets\Turret Game Assets\Scripts\Attacks\Attack.cs" Line="25" Column="28" />
+      <File FileName="Assets\Turret Game Assets\Scripts\Turrets\GaussTurret.cs" Line="38" Column="41" />
+      <File FileName="Assets\Turret Game Assets\Scripts\Attacks\GCPrecisionAttack.cs" Line="27" Column="25" />
+      <File FileName="Assets\Turret Game Assets\Scripts\Projectiles\GaussProjectile.cs" Line="10" Column="32" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

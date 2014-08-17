@@ -46,11 +46,13 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Editor\AttackEditor.cs" />
      <Compile Include="Assets\Editor\ChangePivot.cs" />
      <Compile Include="Assets\Editor\FindMissingScripts.cs" />
      <Compile Include="Assets\Editor\LightningEditor.cs" />
      <None Include="Assets\Turret Game Assets\Scripts\Shaders\Lightning.shader" />
      <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
+     <None Include="Assets\Turret Game Assets\Data\AttacksTest.xml" />
      <None Include="Assets\Turret Game Assets\Data\Attacks.xml" />
  <Reference Include="UnityEditor.Graphs">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>

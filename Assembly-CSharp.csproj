@@ -51,6 +51,8 @@
      <Compile Include="Assets\Turret Game Assets\Scripts\AI\MovingObject.cs" />
      <Compile Include="Assets\Turret Game Assets\Scripts\Attacks\Attack.cs" />
      <Compile Include="Assets\Turret Game Assets\Scripts\Attacks\AttackReader.cs" />
+     <Compile Include="Assets\Turret Game Assets\Scripts\Attacks\GCPrecisionAttack.cs" />
+     <Compile Include="Assets\Turret Game Assets\Scripts\Attacks\LGPrecisionAttack.cs" />
      <Compile Include="Assets\Turret Game Assets\Scripts\Attacks\MGMultiplyAttack.cs" />
      <Compile Include="Assets\Turret Game Assets\Scripts\Attacks\RLMultiplyAttack.cs" />
      <Compile Include="Assets\Turret Game Assets\Scripts\Attacks\RLPrecisionAttack.cs" />
@@ -89,6 +91,7 @@
      <Compile Include="Assets\Turret Game Assets\Scripts\Utils\Utils.cs" />
      <None Include="Assets\Turret Game Assets\Scripts\Shaders\Lightning.shader" />
      <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
+     <None Include="Assets\Turret Game Assets\Data\AttacksTest.xml" />
      <None Include="Assets\Turret Game Assets\Data\Attacks.xml" />
   </ItemGroup>
   <ItemGroup>

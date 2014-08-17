@@ -28,11 +28,24 @@ namespace AssemblyCSharp
 		
 		#region Properties
 
-		public Transform Source { get { return source; } set { source = value; } }
 		public int NumTargetsHit { get { return numTargetsHit; } }
 		public ProjectileType ProjectileType { get { return projectileType; } }
 
 		public TurretModifierType ModifierType { get {return modifierType; } }
+
+		public Transform Source 
+		{
+			get { return source; } 
+			set
+			{ 
+				source = value;
+
+				if (source != null && source.GetComponent<Turret>() != null)
+				{
+					modifierType = (TurretModifierType)source.GetComponent<Turret>().Modifier.SubType;
+				}
+			} 
+		}
 
 		#endregion
 		
@@ -41,11 +54,6 @@ namespace AssemblyCSharp
 		public virtual void Start()
 		{
 			DamageTaker.OnDeathEvent += OnEntityDeath;
-
-			if (source != null && source.GetComponent<Turret>() != null)
-			{
-				modifierType = (TurretModifierType)source.GetComponent<Turret>().Modifier.SubType;
-			}
 
 			ProjectileManager.Instance.AddProjectile(this);
 		}

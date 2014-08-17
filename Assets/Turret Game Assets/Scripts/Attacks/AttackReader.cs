@@ -9,7 +9,6 @@ namespace AssemblyCSharp
 		#region Variables
 
 		private string xmlDocName = "";
-
 		private XmlDocument xmlDoc = null;
 
 		#endregion
@@ -71,7 +70,7 @@ namespace AssemblyCSharp
 			{
 				if (attack == null)
 				{
-					if (node.SelectSingleNode("CustomClass") != null)
+					if (node.SelectSingleNode("CustomClass") != null && node.SelectSingleNode("CustomClass").InnerText != "None")
 					{
 						attack = CreateCustomAttack(node.SelectSingleNode("CustomClass").InnerText);
 					}
@@ -81,8 +80,8 @@ namespace AssemblyCSharp
 					}
 				}
 
-	            if (node.SelectSingleNode("Base") != null)
-	            {
+				if (node.SelectSingleNode("Base") != null && node.SelectSingleNode("Base").InnerText != "None")
+				{
 	                string baseNodeName = node.SelectSingleNode("Base").InnerText;
 
 					LoadAttack(baseNodeName, ref attack);
@@ -121,21 +120,23 @@ namespace AssemblyCSharp
 			
 			if (node.SelectSingleNode("IsMelee") != null)
 			{
-				attack.IsMelee = node.SelectSingleNode("IsMelee").InnerText == "true";
+				attack.IsMelee = XmlConvert.ToBoolean(node.SelectSingleNode("IsMelee").InnerText);
 				
 				if (log) Debug.Log(attackName + " changed isRanged to " + attack.IsMelee);
 			}
 			
-			if (node.SelectSingleNode("Damage") != null)
+			if (node.SelectSingleNode("MinDamage") != null)
 			{
-				Vector2 damage = Vector2.zero;
+				attack.Damage = new Vector2(XmlConvert.ToInt32(node.SelectSingleNode("MinDamage").InnerText), attack.Damage.y);
 
-				damage.x = XmlConvert.ToInt32(node.SelectSingleNode("Damage").SelectSingleNode("Min").InnerText);
-				damage.y = XmlConvert.ToInt32(node.SelectSingleNode("Damage").SelectSingleNode("Max").InnerText);
+				if (log) Debug.Log(attackName + " changed minDamage to " + attack.Damage.x);
+			}
 
-				attack.Damage = damage;
+			if (node.SelectSingleNode("MaxDamage") != null)
+			{
+				attack.Damage = new Vector2(attack.Damage.y, XmlConvert.ToInt32(node.SelectSingleNode("MaxDamage").InnerText));
 
-				if (log) Debug.Log(attackName + " changed damage to " + attack.Damage.x + ", " + attack.Damage.y);
+				if (log) Debug.Log(attackName + " changed maxDamage to " + attack.Damage.y);
 			}
 			
 			if (node.SelectSingleNode("Delay") != null)
@@ -191,6 +192,10 @@ namespace AssemblyCSharp
 				return new RLPrecisionAttack();
 			else if (customClassName == "RLMultiplyAttack")
 				return new RLMultiplyAttack();
+			else if (customClassName == "LGPrecisionAttack")
+				return new LGPrecisionAttack();
+			else if (customClassName == "GCPrecisionAttack")
+				return new GCPrecisionAttack();
 
 			Debug.Log("Warning: Unrecognized custom attack class name " + customClassName);
 
