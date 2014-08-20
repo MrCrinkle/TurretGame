@@ -132,6 +132,7 @@
     <Name>MLNormal</Name>
     <Base>DefaultAttack</Base>
     <ProjectilePrefab>Mine</ProjectilePrefab>
+    <CustomClass>MLNormalAttack</CustomClass>
   </Attack>
   <Attack>
     <Name>MLPrecision</Name>
@@ -148,5 +149,7 @@
   <Attack>
     <Name>MLMultiply</Name>
     <Base>MLNormal</Base>
+    <ProjectilePrefab>MultiplyMine</ProjectilePrefab>
+    <CustomClass>MLMultiplyAttack</CustomClass>
   </Attack>
 </Attacks>

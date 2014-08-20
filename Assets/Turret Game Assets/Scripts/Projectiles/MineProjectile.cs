@@ -18,8 +18,6 @@ namespace AssemblyCSharp
 
 		private Vector3 targetPosition = Vector3.zero;
 		private Vector3 startPosition = Vector3.zero;
-		private float distToTarget = 0.0f;
-		private bool atTarget = false;
 		private bool inAir = true;
 		private bool armed = false;
 		private bool triggered = false;
@@ -33,15 +31,31 @@ namespace AssemblyCSharp
 		
 		#region Properties
 
+		public Vector3 StartPosition
+		{
+			get { return startPosition; }
+			set 
+			{
+				startPosition = value;
+				
+				MovingObject movingObject = transform.GetComponent<MovingObject>();
+				movingObject.direction = Vector3.Normalize(targetPosition - startPosition);
+				movingObject.ResetVelocity();
+
+				transform.position = value;
+			}
+		}
+
 		public Vector3 TargetPosition
 		{
 			get { return targetPosition; }
 			set 
 			{
-				targetPosition = value; 
-				targetPosition.y = 0.0f;
+				targetPosition = value;
 
-				distToTarget = Vector3.Distance(startPosition, targetPosition);
+				MovingObject movingObject = transform.GetComponent<MovingObject>();
+				movingObject.direction = Vector3.Normalize(targetPosition - startPosition);
+				movingObject.ResetVelocity();
 			}
 		}
 
@@ -51,12 +65,13 @@ namespace AssemblyCSharp
 	
 		void Awake()
 		{
-			startPosition = transform.position;
-			startPosition.y = 0.0f;
-
 			radiusIndicator = transform.Find("RadiusIndicator");
 			radiusIndicator.renderer.enabled = false;
 			radiusIndicator.localScale = new Vector3(triggerRadius, triggerRadius, 1.0f);
+
+			MovingObject movingObject = transform.GetComponent<MovingObject>();
+			movingObject.useLookDirection = false;
+			movingObject.ResetVelocity();
 		}
 
 		public override void Start()
@@ -77,19 +92,10 @@ namespace AssemblyCSharp
 
 		void FixedUpdate()
 		{
-			if (!atTarget && inAir && distToTarget != 0.0f)
-			{
-				Vector3 currentPos = transform.position;
-				currentPos.y = 0.0f;
 
-				float distanceTraveled = Vector3.Distance(startPosition, transform.position);
+			MovingObject m = transform.GetComponent<MovingObject>();
 
-				if (distanceTraveled > distToTarget)
-				{
-					onTargetReached();
-				}
-			}
-			else if (inAir)
+			if (inAir)
 			{
 				if (transform.position.y <= 0.2f)
 				{
@@ -114,7 +120,7 @@ namespace AssemblyCSharp
 					radiusIndicator.renderer.enabled = true;
 				}
 			}
-			else if (atTarget && !inAir && !armed)
+			else if (!inAir && !armed)
 			{
 				armTimer += Time.deltaTime;
 
@@ -145,6 +151,49 @@ namespace AssemblyCSharp
 		
 		#region Public Methods
 
+		public void Explode()
+		{
+			ArrayList enemies = EnemyManager.Instance.EnemyList;
+			Transform enemy = null;
+			DamageTaker damageTaker = null;
+			DamageDealer damageDealer = transform.GetComponent<DamageDealer>();
+			
+			for (int i = 0; i < enemies.Count; i++)
+			{
+				enemy = ((Enemy)enemies[i]).transform;
+				damageTaker = enemy.GetComponent<DamageTaker>();
+				
+				if (Vector3.Distance(enemy.position, transform.position) < splashAOE)
+				{
+					if (damageDealer != null && damageTaker != null)
+					{
+						damageTaker.TakeDamage(damageDealer.GetDamage());
+						
+						if (!damageTaker.IsAlive)
+						{
+							Vector3 force = Vector3.Normalize(enemy.position - transform.position) * explosionForce;
+							enemy.rigidbody.AddForce(force);
+						}
+					}
+				}
+			}
+			
+			GameObject explosion = (GameObject)GameObject.Instantiate(explosionParticlePrefab, transform.position, Quaternion.identity);
+			Destroy(explosion, 1.0f);
+			
+			totalExplosions++;
+			
+			if (ModifierType != TurretModifierType.Piercing || totalExplosions > maxPierceExplosions)
+			{
+				Destroy(gameObject);
+			}
+			else
+			{
+				armed = false;
+				radiusIndicator.renderer.enabled = false;
+			}
+		}
+
 		#endregion
 		
 		#region Private Methods
@@ -157,65 +206,7 @@ namespace AssemblyCSharp
 			}
 		}
 
-		void onTargetReached()
-		{
-			transform.position = new Vector3(targetPosition.x, transform.position.y, targetPosition.z);
-
-			MovingObject movingObject = transform.GetComponent<MovingObject>();
-
-			movingObject.MoveSpeed = 0.0f;
-			movingObject.Velocity = new Vector3(0.0f, -fallSpeed, 0.0f);
-			movingObject.acceleration = Vector3.zero;
-			movingObject.directionalAcceleration = 0.0f;
-			movingObject.direction = Vector3.down;
-
-			atTarget = true;
-		}
-
-		public void Explode()
-		{
-			ArrayList enemies = EnemyManager.Instance.EnemyList;
-			Transform enemy = null;
-			DamageTaker damageTaker = null;
-			DamageDealer damageDealer = transform.GetComponent<DamageDealer>();
-
-			for (int i = 0; i < enemies.Count; i++)
-			{
-				enemy = ((Enemy)enemies[i]).transform;
-				damageTaker = enemy.GetComponent<DamageTaker>();
-
-				if (Vector3.Distance(enemy.position, transform.position) < splashAOE)
-				{
-					if (damageDealer != null && damageTaker != null)
-					{
-						damageTaker.TakeDamage(damageDealer.GetDamage());
-
-						if (!damageTaker.IsAlive)
-						{
-							Vector3 force = Vector3.Normalize(enemy.position - transform.position) * explosionForce;
-							enemy.rigidbody.AddForce(force);
-						}
-					}
-				}
-			}
-
-			GameObject explosion = (GameObject)GameObject.Instantiate(explosionParticlePrefab, transform.position, Quaternion.identity);
-			Destroy(explosion, 1.0f);
-
-			totalExplosions++;
-
-			if (ModifierType != TurretModifierType.Piercing || totalExplosions > maxPierceExplosions)
-			{
-				Destroy(gameObject);
-			}
-			else
-			{
-				armed = false;
-				radiusIndicator.renderer.enabled = false;
-			}
-		}
-
-		void OnTriggered(Transform target)
+		protected void OnTriggered(Transform target)
 		{
 			if (!triggered || ModifierType == TurretModifierType.Piercing)
 			{
@@ -242,7 +233,7 @@ namespace AssemblyCSharp
 			}
 		}
 
-		void CheckOtherMineRadius()
+		protected void CheckOtherMineRadius()
 		{
 			// check for other mines
 			// if this mine is in the radius of another, make it explode

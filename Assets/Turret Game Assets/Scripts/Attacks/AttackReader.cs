@@ -70,9 +70,30 @@ namespace AssemblyCSharp
 			{
 				if (attack == null)
 				{
-					if (node.SelectSingleNode("CustomClass") != null && node.SelectSingleNode("CustomClass").InnerText != "None")
+					string customClassName = "";
+					bool doneSearching = false;
+					XmlNode nodeToCheck = node;	
+
+					while(!doneSearching && nodeToCheck != null)
 					{
-						attack = CreateCustomAttack(node.SelectSingleNode("CustomClass").InnerText);
+						if (nodeToCheck.SelectSingleNode("CustomClass") != null && nodeToCheck.SelectSingleNode("CustomClass").InnerText != "None")
+						{
+							customClassName = nodeToCheck.SelectSingleNode("CustomClass").InnerText;
+							doneSearching = true;
+						}
+						else if (nodeToCheck.SelectSingleNode("Base") != null)
+						{
+							nodeToCheck = findAttackNode(xmlAttackList, nodeToCheck.SelectSingleNode("Base").InnerText);
+						}
+						else
+						{
+							doneSearching = true;
+						}
+					}
+
+					if (customClassName != "")
+					{
+						attack = CreateCustomAttack(customClassName);
 					}
 					else
 					{
@@ -117,7 +138,7 @@ namespace AssemblyCSharp
 			string attackName = node.SelectSingleNode("Name").InnerText;
 			
 			bool log = false;
-			
+
 			if (node.SelectSingleNode("IsMelee") != null)
 			{
 				attack.IsMelee = XmlConvert.ToBoolean(node.SelectSingleNode("IsMelee").InnerText);
@@ -196,6 +217,10 @@ namespace AssemblyCSharp
 				return new LGPrecisionAttack();
 			else if (customClassName == "GCPrecisionAttack")
 				return new GCPrecisionAttack();
+			else if (customClassName == "MLNormalAttack")
+				return new MLNormalAttack();
+			else if (customClassName == "MLMultiplyAttack")
+				return new MLMultiplyAttack();
 
 			Debug.Log("Warning: Unrecognized custom attack class name " + customClassName);
 

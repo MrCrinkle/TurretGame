@@ -13,15 +13,5 @@ namespace AssemblyCSharp
 			turretType = TurretType.MachineGun;
 			fireType = FireType.Auto;
 		}
-		
-		public override void Update ()
-		{
-			base.Update();
-		}
-		
-		public override void SetTurretModifierType(TurretModifierType type)
-		{
-			base.SetTurretModifierType(type);
-		}
 	}
 }
