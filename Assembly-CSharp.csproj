@@ -60,10 +60,10 @@
      <Compile Include="Assets\Turret Game Assets\Scripts\Attacks\RLPrecisionAttack.cs" />
      <Compile Include="Assets\Turret Game Assets\Scripts\Effects\Lightning.cs" />
      <Compile Include="Assets\Turret Game Assets\Scripts\Enemies\Enemy.cs" />
-     <Compile Include="Assets\Turret Game Assets\Scripts\Enemies\EnemyController.cs" />
      <Compile Include="Assets\Turret Game Assets\Scripts\Entities\Base.cs" />
      <Compile Include="Assets\Turret Game Assets\Scripts\Entities\DamageDealer.cs" />
      <Compile Include="Assets\Turret Game Assets\Scripts\Entities\DamageTaker.cs" />
+     <Compile Include="Assets\Turret Game Assets\Scripts\Entities\Entity.cs" />
      <Compile Include="Assets\Turret Game Assets\Scripts\Managers\EnemyManager.cs" />
      <Compile Include="Assets\Turret Game Assets\Scripts\Managers\InputManager.cs" />
      <Compile Include="Assets\Turret Game Assets\Scripts\Managers\ProjectileManager.cs" />

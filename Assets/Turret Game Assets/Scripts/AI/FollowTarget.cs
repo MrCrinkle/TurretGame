@@ -3,12 +3,9 @@ using UnityEngine;
 
 namespace AssemblyCSharp
 {
-	[RequireComponent(typeof(MovingObject), typeof(Rigidbody))]
+	[RequireComponent(typeof(MovingObject), typeof(Rigidbody), typeof(Entity))]
     public class FollowTarget : LookAtTarget
     {
-        public float radius = 1.0f;
-        public float targetRadius = 4.0f;
-
 		MovingObject movingObjectComponent;
 		
 		bool atTarget = false;
@@ -27,13 +24,13 @@ namespace AssemblyCSharp
 			if (target == null)
 				return;
 
-			Vector3 targetDiff = target.position - transform.position;
+			Vector3 targetDiff = target.transform.position - transform.position;
 
 			if (ignoreVertical)
 				targetDiff.y = 0.0f;
 
 			float distToTarget = Vector3.Magnitude(targetDiff);
-			float combinedRadius = radius + targetRadius;
+			float combinedRadius = transform.GetComponent<Entity>().radius + target.radius;
 
 			if (!atTarget && distToTarget < combinedRadius)
 			{
@@ -47,7 +44,7 @@ namespace AssemblyCSharp
 				
 				// move so we are touching the target, based on the radii
 				Vector3 direction = Vector3.Normalize(targetDiff);
-				Vector3 finalPosition = target.position;
+				Vector3 finalPosition = target.transform.position;
 
 				if (ignoreVertical)
 					finalPosition.y = transform.position.y;

@@ -19,17 +19,17 @@ namespace AssemblyCSharp
 
 		protected string projectilePrefabName = "null";
 
-		protected Transform target = null;
+		protected Entity target = null;
 		protected Vector3 targetPosition = Vector3.zero;
 		protected string xmlFileName = "";
-		protected Transform owner = null;
+		protected Entity owner = null;
 
 		#endregion
 		
 		#region Properties
 		
-		public Transform Target { get { return target; } set { target = value; } }
-		public Transform Owner { get { return owner; } set { owner = value; } }
+		public Entity Target { get { return target; } set { target = value; } }
+		public Entity Owner { get { return owner; } set { owner = value; } }
 		public string AttackName { get { return attackName; } set { attackName = value; } }
 		public Vector2 Damage { get { return damage; } set { damage = value; } }
 		public float Delay { get { return delay; } set { delay = value; } }
@@ -52,9 +52,21 @@ namespace AssemblyCSharp
 		
 		#region Public Methods
 
+		public virtual ArrayList StartAttack()
+		{
+			return StartAttack(owner.transform.rotation, owner.transform.position);
+		}
+
 		public virtual ArrayList StartAttack(Quaternion direction, Vector3 position)
 		{
-			if (!isMelee && projectilePrefabName != "null" && projectilePrefabName != "")
+			if (isMelee)
+			{
+				if (target != null && target.transform.GetComponent<DamageTaker>() != null)
+				{
+					target.transform.GetComponent<DamageTaker>().TakeDamage(Random.Range(damage.x, damage.y));
+				}
+			}
+			else if (!isMelee && projectilePrefabName != "null" && projectilePrefabName != "")
 			{
 				ArrayList projectiles = new ArrayList();
 

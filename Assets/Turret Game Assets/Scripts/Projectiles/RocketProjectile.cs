@@ -36,7 +36,7 @@ namespace AssemblyCSharp
 
 			FollowTarget followTarget = transform.GetComponent<FollowTarget>();
 
-			if (followTarget != null && followTarget.target != null)
+			if (followTarget != null && followTarget.Target != null)
 			{
 				float ratio = Math.Min(timeAlive / 3.0f, 1.0f);
 				float turnSpeed = (360.0f - startMaxTurnSpeed) * ratio + startMaxTurnSpeed;

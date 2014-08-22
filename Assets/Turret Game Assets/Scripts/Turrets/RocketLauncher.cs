@@ -30,44 +30,9 @@ namespace AssemblyCSharp
 			{
 				if (Input.GetButtonDown("Fire2"))
 				{
-					Transform targetEnemy = EnemyManager.Instance.CheckForEnemyAtMousePosition();
+					Enemy targetEnemy = EnemyManager.Instance.CheckForEnemyAtMousePosition();
 
 					setRocketTarget(targetEnemy);
-
-					/*
-					// get a ray from the mouse position
-					Vector3 mousePos = Input.mousePosition;
-					Ray mouseVector = Camera.mainCamera.ScreenPointToRay(mousePos);
-					
-					ArrayList enemies = EnemyManager.Instance.EnemyList;
-					Collider enemyCollider = null;
-					Transform enemy = null;
-					RaycastHit raycastHit
-					
-					ArrayList enemiesHit = new ArrayList();
-					
-					for (int i = 0; i < enemies.Count; i++)
-					{
-						enemy = ((Enemy)enemies[i]).transform;
-						enemyCollider = enemy.collider;
-						
-						if (enemyCollider == null)
-							continue;
-						
-						// check raycast against enemy and add it to the list if it hits
-						if (enemyCollider.Raycast(mouseVector, out raycastHit, 1000.0f))
-							enemiesHit.Add(enemy);
-					}
-					
-					if (enemiesHit.Count != 0)
-					{
-						setRocketTarget((Transform)enemiesHit[0]);
-					}
-					else
-					{
-						setRocketTarget(null);
-					}
-					*/
 				}
 			}
 		}
@@ -76,38 +41,19 @@ namespace AssemblyCSharp
 		{
 			return base.Shoot();
 		}
-
-		/*
-		protected override GameObject SpawnProjectile()
-		{
-			GameObject projectile = base.SpawnProjectile();
-			
-			if (modifier.SubType == (int)TurretModifierType.Precision && rocketTarget != null)
-			{
-				FollowTarget followTarget = (FollowTarget)projectile.AddComponent(typeof(FollowTarget));
-				followTarget.target = rocketTarget;
-				followTarget.radius = 0.0f;
-				
-				MovingObject movingObject = projectile.GetComponent<MovingObject>();
-				if (movingObject) movingObject.maxMoveSpeed = precisionModRocketSpeed;
-			}
-			
-			return projectile;
-		}
-		*/
 		
-		public void OnEntityDeath(GameObject obj)
+		public void OnEntityDeath(Entity obj)
 		{
-			if (currentAttack.Target == obj.transform)
+			if (currentAttack.Target == obj)
 				setRocketTarget(null);
 		}
 		
-		public void setRocketTarget(Transform target)
+		public void setRocketTarget(Entity target)
 		{
 			if (modifier.SubType != (int)TurretModifierType.Precision)
 				return;
 
-			Transform originalTarget = currentAttack.Target;
+			Entity originalTarget = currentAttack.Target;
 				
 			DamageTaker damageTaker = null;
 			
@@ -119,7 +65,7 @@ namespace AssemblyCSharp
 				currentAttack.Target = target;
 				
 				if (currentAttack.Target != null)
-					currentAttack.Target.localScale = new Vector3(2.0f, 2.0f, 2.0f);
+					currentAttack.Target.transform.localScale = new Vector3(2.0f, 2.0f, 2.0f);
 			}
 			else if (damageTaker != null && !damageTaker.IsAlive)
 			{
@@ -127,7 +73,7 @@ namespace AssemblyCSharp
 			}
 			
 			if (originalTarget != null && originalTarget != currentAttack.Target)
-				originalTarget.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+				originalTarget.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
 		}
 		
 		public override void OnDeselectTurret()

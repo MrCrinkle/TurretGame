@@ -3,7 +3,7 @@ using System.Collections;
 
 namespace AssemblyCSharp
 {
-	public class Base : MonoBehaviour
+	public class Base : Entity
 	{
 		#region Variables
 

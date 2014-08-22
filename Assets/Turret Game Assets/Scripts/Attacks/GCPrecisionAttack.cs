@@ -28,10 +28,10 @@ namespace AssemblyCSharp
 		
 		public override ArrayList StartAttack(Quaternion direction, Vector3 position)
 		{
-			Transform currentTarget = null;
-			Transform target = EnemyManager.Instance.CheckForEnemyAtMousePosition();
+			Entity currentTarget = null;
+			Enemy target = EnemyManager.Instance.CheckForEnemyAtMousePosition();
 			
-			if (target != null && target.GetComponent<Enemy>() != null)
+			if (target != null)
 			{
 				DamageTaker damageTaker = target.GetComponent<DamageTaker>();
 				

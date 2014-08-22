@@ -7,7 +7,7 @@ namespace AssemblyCSharp
 	public enum TurretType { MachineGun, RocketLauncher, Lightning, Gauss, Mine, Max };
 	public enum FireType { Auto, SemiAuto, SingleFire, Max };
 
-	public abstract class Turret : MonoBehaviour
+	public abstract class Turret : Entity
 	{	
 		#region Variables
 		
@@ -54,8 +54,10 @@ namespace AssemblyCSharp
 		
 		#region Initialization
 
-		public virtual void Awake()
+		public override void Awake()
 		{
+			radius = 1.0f;
+
 			currentAmmo = startAmmo;
 			shotTimer = 0.0f;
 			ammoRechargeTimer = 0.0f;
@@ -80,7 +82,7 @@ namespace AssemblyCSharp
 			
 			for (int i = 0; i < attackNameList.Length; i++)
 			{
-				Attack newAttack = attackReader.LoadAttack(attackNameList[i], this.transform);
+				Attack newAttack = attackReader.LoadAttack(attackNameList[i], this);
 				
 				TurretModifierType key = TurretModifierType.None;
 				
@@ -99,7 +101,7 @@ namespace AssemblyCSharp
 			currentAttack = (Attack)attackList[TurretModifierType.None];
 		}
 
-		public virtual void Start() 
+		public override void Start() 
 		{
 
 		}
@@ -108,7 +110,7 @@ namespace AssemblyCSharp
 		
 		#region Game Loop
 		
-		public virtual void Update() 
+		public override void Update() 
 		{
 			if (container == null)
 			{
@@ -243,6 +245,10 @@ namespace AssemblyCSharp
 			}
 		}
 		
+		#endregion
+
+		#region Private Methods
+
 		#endregion
 	}
 }

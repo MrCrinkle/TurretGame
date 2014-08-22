@@ -10,6 +10,7 @@ namespace AssemblyCSharp
 		private static EnemyManager instance;
 
 		public float enemySpawnDist = 45.0f;
+		public int totalValueToSpawn = 20; // amount of enemies to spawn based on the enemies' value
 
 		public GameObject[] enemyPrefabList;
 
@@ -18,7 +19,7 @@ namespace AssemblyCSharp
 		float spawnChance = 0.5f; // chance to spawn an enemy per second
 		float maxSpawnDelay = 2.0f; // maximum seconds between spawns
 		int maxSpawnsPerSecond = 1; // maximum number of enemies that can spawn per second
-		int totalValueToSpawn = 20; // amount of enemies to spawn based on the enemies' value
+
 
 		int totalValueSpawned = 0;
 		float timeSinceSpawn = 0.0f;
@@ -33,8 +34,8 @@ namespace AssemblyCSharp
 		
 		public static EnemyManager Instance
 		{
-			get;
-			private set;
+			get { return instance; }
+			private set { instance = value; }
 		}
 
 		public ArrayList EnemyList
@@ -186,7 +187,7 @@ namespace AssemblyCSharp
 			enemyList.Clear();
 		}
 
-		public Transform CheckForEnemyAtMousePosition()
+		public Enemy CheckForEnemyAtMousePosition()
 		{
 			// get a ray from the mouse position
 			Vector3 mousePos = Input.mousePosition;
@@ -215,7 +216,10 @@ namespace AssemblyCSharp
 			if (enemiesHit.Count != 0)
 				enemyHit = (Transform)enemiesHit[0];
 
-			return enemyHit;
+			if (enemyHit != null)
+				return enemyHit.GetComponent<Enemy>();
+
+			return null;
 		}
 
 		GameObject SpawnEnemy(int type)
@@ -230,7 +234,7 @@ namespace AssemblyCSharp
 			Quaternion direction = Quaternion.LookRotation (eulerDirection);
 
 			GameObject newEnemy = (GameObject)GameObject.Instantiate(enemyPrefabList[type], position, direction);
-			newEnemy.GetComponent<FollowTarget>().target = World.Instance.baseRef;
+			newEnemy.GetComponent<Enemy>().Target = World.Instance.baseRef.GetComponent<Entity>();
 
 			Enemy enemyComponent = newEnemy.GetComponent<Enemy>();
 

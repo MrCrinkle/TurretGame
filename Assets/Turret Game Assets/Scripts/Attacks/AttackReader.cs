@@ -38,7 +38,7 @@ namespace AssemblyCSharp
 			xmlDoc.Load(fileName);
 		}
 
-		public virtual Attack LoadAttack(string attackName, Transform owner)
+		public virtual Attack LoadAttack(string attackName, Entity owner)
 		{
 			Attack attack = null;
 

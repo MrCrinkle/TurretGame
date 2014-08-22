@@ -213,7 +213,7 @@ namespace AssemblyCSharp
 			
 			if (isFirstPrecisionModTarget)
 			{
-				precisionModCollisionObject.transform.position = source.position;
+				precisionModCollisionObject.transform.position = source.transform.position;
 				precisionModCollisionObject.transform.rotation = source.transform.rotation;
 				
 				BoxCollider collider = (BoxCollider)precisionModCollisionObject.AddComponent<BoxCollider>();
@@ -221,7 +221,7 @@ namespace AssemblyCSharp
 				collider.center = new Vector3(0.0f, 0.0f, 20.0f);
 				collider.isTrigger = true;
 
-				precisionModTargets.Add(source.Find("FirePoint").transform);
+				precisionModTargets.Add(source.transform.Find("FirePoint").transform);
 				
 				isFirstPrecisionModTarget = false;
 			}

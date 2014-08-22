@@ -7,7 +7,7 @@ namespace AssemblyCSharp
 	{
 		#region Variables
 
-		Transform currentPrecisionTarget = null;
+		Entity currentPrecisionTarget = null;
 
 		#endregion
 		
@@ -37,11 +37,11 @@ namespace AssemblyCSharp
 			{
 			    if (Input.GetButtonDown("Fire1"))
 				{
-					Transform target = EnemyManager.Instance.CheckForEnemyAtMousePosition();
+					Enemy target = EnemyManager.Instance.CheckForEnemyAtMousePosition();
 
-					if (target != null && target.GetComponent<Enemy>() != null)
+					if (target != null)
 					{
-						DamageTaker damageTaker = target.GetComponent<DamageTaker>();
+						DamageTaker damageTaker = target.transform.GetComponent<DamageTaker>();
 
 						if(damageTaker != null && damageTaker.IsAlive)
 							currentPrecisionTarget = target;

@@ -152,4 +152,13 @@
     <ProjectilePrefab>MultiplyMine</ProjectilePrefab>
     <CustomClass>MLMultiplyAttack</CustomClass>
   </Attack>
+  <Attack>
+    <Name>BasicEnemyAttack</Name>
+    <Base>DefaultAttack</Base>
+    <IsMelee>true</IsMelee>
+    <MaxRange>1.5</MaxRange>
+    <Delay>1.1</Delay>
+    <MinDamage>50</MinDamage>
+    <MaxDamage>50</MaxDamage>
+  </Attack>
 </Attacks>

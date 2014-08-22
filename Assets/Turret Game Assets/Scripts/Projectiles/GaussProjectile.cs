@@ -16,12 +16,12 @@ namespace AssemblyCSharp
 		protected Transform shotModel = null;
 		protected float shotSize = 25.0f;
 
-		Transform target = null;
+		Entity target = null;
 		bool isSecondProjectile = false;
 
 		#endregion
 
-		public Transform Target 
+		public Entity Target 
 		{ 
 			get { return target; }
 			set { target = value; }
@@ -92,8 +92,8 @@ namespace AssemblyCSharp
 					RaycastHit hit;
 
 					Collider colliderToCheck = target.collider;
-					if (target.Find("ProjectileCollider") != null)
-						colliderToCheck = target.Find("ProjectileCollider").collider;
+					if (target.transform.Find("ProjectileCollider") != null)
+						colliderToCheck = target.transform.Find("ProjectileCollider").collider;
 
 					if(colliderToCheck.Raycast(ray, out hit, 100.0f))
 					{
@@ -230,7 +230,7 @@ namespace AssemblyCSharp
 				GameObject newProjectile = (GameObject)GameObject.Instantiate(source.GetComponent<Turret>().projectilePrefab, hit.point, shotRotation);
 				newProjectile.transform.GetComponent<Projectile>().Source = source;
 				newProjectile.GetComponent<GaussProjectile>().IsSecondProjectile = true;
-				newProjectile.GetComponent<GaussProjectile>().target = closestEnemy;
+				newProjectile.GetComponent<GaussProjectile>().target = closestEnemy.GetComponent<Entity>();
 				newProjectile.GetComponent<DamageDealer>().maxDamage *= pierceDamageMult;
 				newProjectile.GetComponent<DamageDealer>().minDamage *= pierceDamageMult;
 				

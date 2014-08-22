@@ -12,7 +12,7 @@ namespace AssemblyCSharp
 		public int shotBurstCount = 3;
 		public float range = 20.0f;
 
-		Transform currentTarget = null;
+		Entity currentTarget = null;
 		float shotTimer = 0.0f;
 		float shotBurstCounter = 0;
 		bool isShooting = false;
@@ -28,7 +28,7 @@ namespace AssemblyCSharp
 
 		#endregion
 
-		public Transform CurrentTarget { get { return currentTarget; } }
+		public Entity CurrentTarget { get { return currentTarget; } }
 
 		#region Properties
 
@@ -145,10 +145,10 @@ namespace AssemblyCSharp
 			{
 				// randomly select a target out of the list
 				int targetIndex = Random.Range(0, possibleTargetList.Count - 1);
-				currentTarget = (Transform)possibleTargetList[targetIndex];
+				currentTarget = (Entity)possibleTargetList[targetIndex];
 
-				if (standLookAtTargetComponent != null) standLookAtTargetComponent.target = currentTarget;
-				if (gunLookAtTargetComponent != null) gunLookAtTargetComponent.target = currentTarget;
+				if (standLookAtTargetComponent != null) standLookAtTargetComponent.Target = currentTarget;
+				if (gunLookAtTargetComponent != null) gunLookAtTargetComponent.Target = currentTarget;
 
 				foundTarget = true;
 			}
@@ -183,13 +183,13 @@ namespace AssemblyCSharp
 			isShooting = false;
 			currentTarget = null;
 
-			if (standLookAtTargetComponent != null) standLookAtTargetComponent.target = null;
-			if (gunLookAtTargetComponent != null) gunLookAtTargetComponent.target = null;
+			if (standLookAtTargetComponent != null) standLookAtTargetComponent.Target = null;
+			if (gunLookAtTargetComponent != null) gunLookAtTargetComponent.Target = null;
 		}
 
-		void OnEntityDeath(GameObject obj)
+		void OnEntityDeath(Entity entity)
 		{
-			if (obj.transform == currentTarget)
+			if (entity == currentTarget)
 				OnTargetLost();
 		}
 

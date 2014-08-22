@@ -20,7 +20,7 @@ namespace AssemblyCSharp
 		protected float timeAlive = 0.0f;
 		protected int numTargetsHit = 0;
 		
-		protected Transform source;
+		protected Entity source;
 
 		private TurretModifierType modifierType = TurretModifierType.None;
 
@@ -33,7 +33,7 @@ namespace AssemblyCSharp
 
 		public TurretModifierType ModifierType { get {return modifierType; } }
 
-		public Transform Source 
+		public Entity Source 
 		{
 			get { return source; } 
 			set
@@ -121,12 +121,12 @@ namespace AssemblyCSharp
 			}
 		}
 		
-		public void OnEntityDeath(GameObject obj)
+		public void OnEntityDeath(Entity entity)
 		{
 			FollowTarget followTarget = transform.GetComponent<FollowTarget>();
 			
-			if (followTarget != null && followTarget.target != null && followTarget.target == obj.transform)
-				followTarget.target = null;
+			if (followTarget != null && followTarget.Target != null && followTarget.Target == entity.transform)
+				followTarget.Target = null;
 		}
 
 		protected virtual void OnHitSolidObject(Collision collision, Collider other, Transform hitObject)

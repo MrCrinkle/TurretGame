@@ -141,7 +141,7 @@ namespace AssemblyCSharp
 
 					if (Vector3.Distance(enemy.position, transform.position) < triggerRadius)
 					{
-						OnTriggered(enemy);
+						OnTriggered(enemy.GetComponent<Enemy>());
 					}
 				}
 			}
@@ -206,7 +206,7 @@ namespace AssemblyCSharp
 			}
 		}
 
-		protected void OnTriggered(Transform target)
+		protected void OnTriggered(Entity target)
 		{
 			if (!triggered || ModifierType == TurretModifierType.Piercing)
 			{
@@ -217,10 +217,8 @@ namespace AssemblyCSharp
 				if (source.GetComponent<Turret>().Modifier.SubType == (int)TurretModifierType.Precision)
 				{
 					FollowTarget followTarget = (FollowTarget)gameObject.AddComponent(typeof(FollowTarget));
-					followTarget.target = target;
-					followTarget.radius = 0.0f;
+					followTarget.Target = target;
 					followTarget.maxTurnSpeed = 0.0f;
-					followTarget.targetRadius = 0.5f;
 
 					MovingObject movingObject = transform.GetComponent<MovingObject>();
 					movingObject.ResetVelocity();

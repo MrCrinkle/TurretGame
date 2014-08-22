@@ -3,6 +3,7 @@ using System.Collections;
 
 namespace AssemblyCSharp
 {
+	[RequireComponent (typeof(Entity))]
 	public class DamageTaker : MonoBehaviour
 	{
 		public float maxHP = 100;
@@ -21,7 +22,7 @@ namespace AssemblyCSharp
 		public float CurrentArmor { get { return currentArmor; } }
 		public bool IsAlive { get { return alive; } }
 		
-		public delegate void OnDeathDelegate(GameObject obj);
+		public delegate void OnDeathDelegate(Entity obj);
 		public static event OnDeathDelegate OnDeathEvent;
 		
 		void Start()
@@ -85,7 +86,7 @@ namespace AssemblyCSharp
 		
 		void OnDeath()
 		{
-			OnDeathEvent(gameObject);
+			OnDeathEvent(transform.GetComponent<Entity>());
 		}
 	}
 }

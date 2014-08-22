@@ -6,21 +6,32 @@ namespace AssemblyCSharp
 	public class LookAtTarget : MonoBehaviour
 	{
 		#region Variables
-		
-		public Transform target = null;
+
 		public bool ignoreVertical = false;
 		public bool ignoreHorizontal = false;
 		public float maxTurnSpeed = 200.0f; // in degrees per second
 		public bool useLocalRotation = false;
 
+		protected Entity target = null;
+
 		#endregion
 		
 		#region Properties
-		
+
+		public Entity Target
+		{
+			get { return target; }
+			set { target = value; }
+		}
+
 		#endregion
 		
 		#region initialization
-		
+
+		public virtual void Awake()
+		{
+		}
+
 		public virtual void Start()
 		{
 
@@ -35,7 +46,7 @@ namespace AssemblyCSharp
 			if (target == null || (ignoreVertical && ignoreHorizontal))
 				return;
 
-			Vector3 targetDirection = target.position - transform.position;
+			Vector3 targetDirection = target.transform.position - transform.position;
 
 			// ignore y component of position
 			if (ignoreVertical)

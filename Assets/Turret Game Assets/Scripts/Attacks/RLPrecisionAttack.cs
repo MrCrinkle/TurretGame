@@ -33,9 +33,7 @@ namespace AssemblyCSharp
 			GameObject newProjectile = base.SpawnProjectile(direction, position);
 
 			FollowTarget followTarget = (FollowTarget)newProjectile.AddComponent(typeof(FollowTarget));
-			followTarget.target = target;
-			followTarget.radius = 0.0f;
-			followTarget.targetRadius = 0.0f;
+			followTarget.Target = target;
 			followTarget.ignoreVertical = true;
 			followTarget.maxTurnSpeed = 200.0f;
 

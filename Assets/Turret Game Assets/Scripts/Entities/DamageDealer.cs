@@ -3,6 +3,7 @@ using System.Collections;
 
 namespace AssemblyCSharp
 {
+	[RequireComponent (typeof(Entity))]
     public class DamageDealer : MonoBehaviour
 	{
         public float minDamage = 20;
